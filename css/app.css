@@ -1,0 +1,222 @@
+/* Terapakn box sizing = border box */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header.navbar-container {
+    width: 100%;
+    max-width: 1200px;
+    padding-block: 1rem;
+    margin-inline: auto;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+header.navbar-container .logo img {
+    width: 150px;
+}
+
+header.navbar-container .nav-list ul {
+    padding-left: 0;
+
+    display: flex;
+    justify-content: center;
+    gap: 2rem 1rem;
+}
+
+header.navbar-container .nav-list li {
+    list-style-type: none;
+}
+
+header.navbar-container .nav-list li a {
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: black;
+
+    transition: all 0.2s ease-in-out;
+}
+
+header.navbar-container .nav-list li:hover a {
+    background-color: #425c77;
+    color: white;
+}
+
+/* Perbaiki tampilin dengan menambahkan main */
+
+main {
+    flex: 1;
+
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: 2rem 4rem;
+
+    display: flex;
+    align-items: center;
+}
+
+/* div content jadiin flex container tujuannya bisa berjejer  */
+
+main .content {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+}
+
+main .content .content-description {
+    flex: 1 1;
+}
+
+main .content .content-descritpion .title {
+    margin-block: 1rem;
+
+    font-size: 3.5rem;
+}
+
+main .content .content-description p {
+    font-size: 1.2rem;
+    line-height: 1.7rem;
+}
+
+main .content .content-description button {
+    padding: 0.8rem 2.5rem;
+    border: 3px solid transparent;
+    border-radius: 999px;
+    margin-block-start: 1rem;
+
+    background-color: #2d3e50;
+
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+
+    cursor: pointer;
+    transition: all 0.15s ease-in;
+}
+
+main .content .content-description button:hover {
+    border: 3px solid #2d3e50;
+    background-color: transparent;
+
+    color: #2d3e50;
+}
+
+main .content .content-image {
+    flex: 1;
+
+    display: flex;
+}
+
+main .content .content-image img {
+    width: 300px;
+    min-width: 250px;
+    margin: auto;
+}
+
+/* Mengatur simbol simbol akan fixed di kanan
+Selanjutnya, kita akan mengatur tampilan ikon-ikon media sosial. Kita akan memosisikannya pada tepi kanan viewport (menempel). Strateginya, kita akan terapkan properti position: fixed pada elemen <aside>. Mirip dengan sebelumnya, kita akan menengahkan elemen div.social-media ul secara vertikal menggunakan margin: auto. Selain itu, elemen <ul> juga diberikan properti display: flex untuk mengurutkan elemen <li> secara vertikal. Untuk lebih jelasnya, silakan Anda tuliskan kode CSS berikut.
+*/
+
+main aside {
+    position: fixed;
+    inset-block: 0;
+    inset-inline-end: 0;
+}
+
+main aside .social-media {
+    height: 100%;
+    display: flex;
+}
+
+main aside .social-media ul {
+    padding: 1.5rem 1rem;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    margin: auto;
+    background-color: #2d3e50;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+main aside .social-media li {
+    list-style-type: none;
+}
+
+main aside .social-media li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+
+    transition: all 0.1s ease-in-out;
+}
+
+main aside .social-media li a:hover {
+    color: #89b0d9;
+}
+
+/* Menetapkan ukuran jika layaar lebih kecil speerti membukanya di hp */
+
+@media screen and (max-width:768px) {
+    header.navbar-container {
+        flex-direction: column;
+    }
+
+    header.navbar-container .nav-list ul {
+        flex-wrap: wrap;
+        column-gap: 0.5rem;
+    }
+
+    main {
+        padding: 1rem 3rem;
+    }
+
+    main .content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    main .content .content-description .title {
+        font-size: 3rem;
+    }
+
+    main .content .content-description p {
+        font-size: 1rem;
+    }
+
+    main .content .content-image {
+        order: -1;
+    }
+
+    /* Perubahan di atas membawa kita untuk menerapkan properti order pada elemen div.content-image. Tujuan dari properti ini adalah mengatur urutan konten dari susunan flex items. Secara default, value-nya adalah 0. Namun, jika kita berikan -1, flex item yang bersangkutan akan bertempat pada urutan awal. */
+}
+
+/* Untuk mengatasi masalah ini, bagaimana jika kita turunkan satu navigation terakhir? Jika setuju, langsung saja kita terapkan properti flex-wrap: wrap pada elemen <ul>. Silakan tambahkan kode CSS berikut.
+ */
+
+/* Selanjutnya, kita akan memperbaiki konten utama. Kasus yang terjadi sama dengan sebelumnya, yaitu terjadi overflow content jika ditampilkan pada lebar viewport yang lebih kecil. Oleh karena itu, kita ubah arah flex menjadi kolom dengan menerapkan flex-direction: column pada elemen main .content. Silakan tambahkan kode bercetak tebal berikut. */
